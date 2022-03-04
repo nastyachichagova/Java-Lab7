@@ -173,9 +173,7 @@ public class Fraction_Calculator {
         Scanner in = new Scanner(System.in);
 
         int n1, d1, n2, d2;
-        String x, y;
         Fraction f1, f2;
-        int[] numbers;
 
         System.out.print("Введите выражение: ");
         String str = in.nextLine();
@@ -187,7 +185,7 @@ public class Fraction_Calculator {
         if(m.matches()){
             String elements[] = str.split(" ");
 
-            numbers = Fraction.Numbers(elements[0], elements[2]);
+            int[] numbers = Fraction.Numbers(elements[0], elements[2]);
 
             n1 = numbers[0];
             d1 = numbers[1];
