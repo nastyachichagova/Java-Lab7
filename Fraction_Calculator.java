@@ -9,7 +9,7 @@ class Fraction {
         if (d == 0) {throw new Exception("Некорректный параметр");}
         else
             this.n = n;
-            this.d = d;
+        this.d = d;
     }
     //Создание простой дроби по умолчанию (числитель 1, знаменатель 1)
     public Fraction(){
@@ -61,7 +61,7 @@ class Fraction {
         }
     }
 
-    //обработка дробей вида 0/d --> 0/1, n/-d --> -n/d, -n/-d --> n/d
+    //Обработка дробей вида 0/d --> 0/1, n/-d --> -n/d, -n/-d --> n/d
     public static Fraction Check(int n,  int d){
         Fraction r = new Fraction();
 
@@ -71,14 +71,14 @@ class Fraction {
                 r.setD(-d);
             } else
                 r.setN(n);
-                r.setD(d);
+            r.setD(d);
         } else
             r.setN(0);
         return r;
     }
 
     //Сумма
-    public static String Sum (Fraction f1, Fraction f2){
+    public static Fraction Sum (Fraction f1, Fraction f2){
         int n_r, d_r;
 
         int n1 = f1.getN();
@@ -96,11 +96,11 @@ class Fraction {
 
         Fraction r = Check(n_r, d_r);
 
-        return (f1.toString() + " + " + f2.toString() + " = " + r.toString());
+        return r;
     }
 
     //Разность
-    public static String Dis (Fraction f1, Fraction f2){
+    public static Fraction Dis (Fraction f1, Fraction f2){
         int n_r, d_r;
 
         int n1 = f1.getN();
@@ -118,11 +118,11 @@ class Fraction {
 
         Fraction r = Check(n_r, d_r);
 
-        return (f1.toString() + " - " + f2.toString() + " = " + r.toString());
+        return r;
     }
 
     //Умножение
-    public static String Mul (Fraction f1, Fraction f2){
+    public static Fraction Mul (Fraction f1, Fraction f2){
         int n_r, d_r;
 
         int n1 = f1.getN();
@@ -140,30 +140,28 @@ class Fraction {
 
         Fraction r = Check(n_r, d_r);
 
-        return (f1.toString() + " * " + f2.toString() + " = " + r.toString());
+        return r;
     }
 
     //Деление
-    public static String Div (Fraction f1, Fraction f2) {
+    public static Fraction Div (Fraction f1, Fraction f2) {
         int n_r, d_r;
+        int n2 = f2.getN();
 
         int n1 = f1.getN();
         int d1 = f1.getD();
-        int n2 = f2.getN();
         int d2 = f2.getD();
 
-        if (n2 != 0) {
-            n_r = n1 * d2;
-            d_r = d1 * n2;
-            int div = Simp(n_r, d_r);
+        n_r = n1 * d2;
+        d_r = d1 * n2;
+        int div = Simp(n_r, d_r);
 
-            n_r /= div;
-            d_r /= div;
+        n_r /= div;
+        d_r /= div;
 
-            Fraction r = Check(n_r, d_r);
+        Fraction r = Check(n_r, d_r);
 
-            return (f1.toString() + " : " + f2.toString() + " = " + r.toString());
-        } else return ("Нельзя делить на 0");
+        return r;
     }
 }
 
@@ -197,7 +195,7 @@ public class Fraction_Calculator {
                 try {
                     f1 = new Fraction(n1, d1);
                     f2 = new Fraction(n2, d2);
-                    System.out.println("Решение: " + Fraction.Sum(f1, f2));
+                    System.out.println(Fraction.Sum(f1, f2).toString());
 
                 } catch (Exception e) {
                     System.out.println(e.toString());
@@ -208,7 +206,7 @@ public class Fraction_Calculator {
                 try {
                     f1 = new Fraction(n1, d1);
                     f2 = new Fraction(n2, d2);
-                    System.out.println("Решение: " + Fraction.Dis(f1, f2));
+                    System.out.println(Fraction.Dis(f1, f2).toString());
 
                 } catch (Exception e) {
                     System.out.println(e.toString());
@@ -219,7 +217,7 @@ public class Fraction_Calculator {
                 try {
                     f1 = new Fraction(n1, d1);
                     f2 = new Fraction(n2, d2);
-                    System.out.print("Решение: " + Fraction.Mul(f1, f2));
+                    System.out.print(Fraction.Mul(f1, f2).toString());
 
                 } catch (Exception e) {
                     System.out.println(e.toString());
@@ -231,7 +229,7 @@ public class Fraction_Calculator {
                 try {
                     f1 = new Fraction(n1, d1);
                     f2 = new Fraction(n2, d2);
-                    System.out.println("Решение: " + Fraction.Div(f1, f2));
+                    System.out.println(Fraction.Div(f1, f2).toString());
 
                 } catch (Exception e) {
                     System.out.println(e.toString());
@@ -244,6 +242,3 @@ public class Fraction_Calculator {
         in.close();
     }
 }
-
-
-
