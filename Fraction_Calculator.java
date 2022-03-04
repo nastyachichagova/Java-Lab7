@@ -226,15 +226,19 @@ public class Fraction_Calculator {
 
             }
             else{
-                try {
-                    f1 = new Fraction(n1, d1);
-                    f2 = new Fraction(n2, d2);
-                    System.out.println(Fraction.Div(f1, f2).toString());
+                if (n2 != 0){
+                    try {
+                        f1 = new Fraction(n1, d1);
+                        f2 = new Fraction(n2, d2);
+                        System.out.println(Fraction.Div(f1, f2).toString());
 
-                } catch (Exception e) {
-                    System.out.println(e.toString());
-                    System.exit(-1);
+                    } catch (Exception e) {
+                        System.out.println(e.toString());
+                        System.exit(-1);
+                    }
                 }
+                else
+                    System.out.println("Нельзя делить на 0");
             }
         }else
             System.out.println("Неверное выражение");
